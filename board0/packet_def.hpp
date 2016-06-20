@@ -37,6 +37,27 @@ Developed By: Michael Fay for Rocksat-X 2016
 	#define GET_DEVICE_NAME 0x06 // Used to for getting device name from a node
 #endif
 
+#ifndef START_SERVO
+	#define START_SERVO  0x07
+#endif
+
+#ifndef STOP_SERVO
+	STOP_SERVO 0x08
+#endif 
+
+#ifndef REVERSE_SERVO
+	REVERSE_SERVO 0x09
+#endif 
+
+
+#ifndef START_CAMERA
+	START_CAMERA 0x0A
+#endif 
+
+#ifndef STOP_CAMERA
+	STOP_CAMERA 0x0B
+#endif 
+
 #ifndef START_BYTE
 	START_BYTE 0xEA
 #endif 

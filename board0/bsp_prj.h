@@ -82,3 +82,6 @@
 #define CURS_SERV_2_PIN	PIN3
 
 #define MAX_DATA_SIZE[256]
+
+#define RX_PIN SOMETHING
+#define TX_PIN SOMETHING
