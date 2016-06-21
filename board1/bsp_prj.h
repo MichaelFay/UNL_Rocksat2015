@@ -83,8 +83,8 @@
 
 #define MAX_DATA_SIZE[256]
 
-#define RX_PIN SOMETHING
-#define TX_PIN SOMETHING
+#define RX_PIN COM_1
+#define TX_PIN COM_2
 
 
 #define BOOT_CAMERA 1
