@@ -172,13 +172,9 @@ void loop()
 				}
 				break;
 
-			case START_CAMERA:
-				//TODO Put Camera Start CODE HERE
-				break;
+			case SHUTDOWN:
+				logUpdate(BASE_ADDRESS_EEPROM, EEPROM_address);
 
-			case STOP_CAMERA:
-				//TODO Put Camera End CODE HERE
-				break; 
 		
 			default: 
 				UTL_ASSERT_CONTINUE(Timer1.read());
@@ -259,7 +255,10 @@ void sendPacket(NERI * pkt)
 	Serial.write(*pkt)
 }
 
-
+void logUpdate(uint16_t address, uint8_t val)
+{
+	  EEPROM.update(address, val);
+}
 void logWrite(byte val)
 {
 

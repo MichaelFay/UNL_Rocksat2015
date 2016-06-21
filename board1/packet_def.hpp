@@ -49,7 +49,6 @@ Developed By: Michael Fay for Rocksat-X 2016
 	#define REVERSE_SERVO 0x09
 #endif 
 
-
 #ifndef START_CAMERA
 	#define START_CAMERA 0x0A
 #endif 
@@ -58,13 +57,8 @@ Developed By: Michael Fay for Rocksat-X 2016
 	#define STOP_CAMERA 0x0B
 #endif 
 
-#ifndef
-	#define SERVO_ARM 0x01
-#endif 
-
-#ifndef
-	#define SERVO_SP 0x02
-#endif 
+#ifndef SHUTDOWN
+	#define SHUTDOWN 0x0C
 
 #ifndef START_BYTE
 	#define START_BYTE 0xEA
@@ -76,6 +70,14 @@ Developed By: Michael Fay for Rocksat-X 2016
 
 #ifndef NO_CRC
 	#define NO_CRC 0xFF
+#endif 
+
+#ifndef
+	#define SERVO_ARM 0x01
+#endif 
+
+#ifndef
+	#define SERVO_SP 0x02
 #endif 
 
 
