@@ -144,9 +144,15 @@ void loop()
 		TX_buffer[TX_buffer_size].data[0]		= SERVO_ARM;
 		TX_buffer[TX_buffer_size].crc			= NO_CRC;
 		TX_buffer_size ++;
+
+		Arm.write(SERVO_ARM_SPEED_FWD);
 	}
 	else if(time >=DEPLOY_ARM_TIME && time < DEPLOY_SP_TIME)
 	{
+
+
+		SP.write(SERVO_SP_SPEED_FWD);
+
 		TX_buffer[TX_buffer_size].reciever_id 	= BOARD_ADDRESS;
 		TX_buffer[TX_buffer_size].sender_id 	= 0x01;
 		TX_buffer[TX_buffer_size].command		= START_SERVO;
@@ -157,11 +163,15 @@ void loop()
 	}
 	else if(time >= DEPLOY_SP_TIME && time >= EXTEND_DELAY)
 	{
+		SP.write(SERVO_SP_SPEED_STOP);
+		Arm.write(SERVO_ARM_SPEED_STOP);
 		readAllPins();
 	}
 
 	else if(time >= EXTEND_DELAY && time >= RETRACT_SP_TIME)
 	{
+		SP.write(SERVO_SP_SPEED_STOP_REVERSE);
+
 		TX_buffer[TX_buffer_size].reciever_id 	= BOARD_ADDRESS;
 		TX_buffer[TX_buffer_size].sender_id 	= 0x01;
 		TX_buffer[TX_buffer_size].command		= REVERSE_SERVO;
@@ -173,6 +183,8 @@ void loop()
 
 	else if(time >= RETRACT_SP_TIME && time >= RETRACT_ARM_TIME)
 	{
+		Arm.write(SERVO_ARM_SPEED_REVERSE);
+
 		TX_buffer[TX_buffer_size].reciever_id 	= BOARD_ADDRESS;
 		TX_buffer[TX_buffer_size].sender_id 	= 0x01;
 		TX_buffer[TX_buffer_size].command		= REVERSE_SERVO;
@@ -194,7 +206,9 @@ void loop()
 					stopCamera();
 					boot_sequence++;
 					break; 
-				case SERVO_LOCK:				
+				case SERVO_LOCK:
+					Arm.write(SERVO_ARM_SPEED_STOP);
+
 					TX_buffer[TX_buffer_size].reciever_id 	= BOARD_ADDRESS;
 					TX_buffer[TX_buffer_size].sender_id 	= 0x01;
 					TX_buffer[TX_buffer_size].command		= STOP_SERVO;
@@ -204,7 +218,9 @@ void loop()
 					boot_sequence++;
 					TX_buffer_size ++;
 
-				case SERVO_LOCK:				
+				case SERVO_LOCK:
+					SP.write(SERVO_SP_SPEED_STOP);			
+						
 					TX_buffer[TX_buffer_size].reciever_id 	= BOARD_ADDRESS;
 					TX_buffer[TX_buffer_size].sender_id 	= 0x01;
 					TX_buffer[TX_buffer_size].command		= STOP_SERVO;
@@ -237,6 +253,7 @@ void loop()
 	}
 
 }
+
 
 
 

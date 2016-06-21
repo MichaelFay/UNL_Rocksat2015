@@ -159,7 +159,7 @@ void loop()
 					#ifdef PKT_WRITE
 						Arm.write(tmp.data[1]);
 					#else
-						Arm.write(SERVO_ARM_SPEED_STOP);
+						Arm.write(SERVO_ARM_SPEED_REVERSE);
 					#endif 
 				}
 				else if(tmp.data[0] == SERVO_SP)
@@ -167,7 +167,7 @@ void loop()
 					#ifdef PKT_WRITE
 						SP.write(tmp.data[1]);
 					#else
-						SP.write(SERVO_SP_SPEED_STOP);
+						SP.write(SERVO_SP_SPEED_STOP_REVERSE);
 					#endif 
 				}
 				break;
