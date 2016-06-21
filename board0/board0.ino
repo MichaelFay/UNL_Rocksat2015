@@ -81,8 +81,6 @@ void setup()
 	initTimerSync();
 	initEEProm();
 
-	
-
 }
 
 
@@ -187,6 +185,8 @@ void loop()
 				UTL_ASSERT_CONTINUE(':');
 				UTL_ASSERT_CONTINUE(0x02);
 				break;
+
+			RX_buffer_location --;
 		}
 	}
 
@@ -247,6 +247,8 @@ void proc_serial(byte * bytes, NERI * packet)
 		packet->data[i] = bytes[5 + i];
 	}
 	packet->crc = bytes[5 + packet->data_len];
+
+	RX_byte_buffer_location -= (5 + packet->data_len);
 
 	proc_data = true;
 
